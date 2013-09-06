@@ -1,0 +1,486 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+/*
+* This project uses pattern files from http://subtlepatterns.com/.
+* Subtle Patterns by Subtle Patterns 
+* is licensed under a 
+* Creative Commons Attribution-ShareAlike 3.0 Unported License.
+* http://creativecommons.org/licenses/by-sa/3.0/deed.en_US
+*
+* Many thanks to Atle Mo and the pattern designers!
+*/
+
+
+/* 
+* Awesome Entypo pictograms by Daniel Bruce — www.entypo.com
+* The Entypo pictograms are licensed under CC BY 3.0 and the font under SIL Open Font License.
+*/
+
+
+/* Table of Content
+==================================================
+	#Typography
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+
+
+/* #Typography / baseline corrections
+================================================== */
+
+h1 { line-height: 49px; margin-bottom: 14px; }
+h2 { line-height: 42px; margin-bottom: 7px; }
+h3 { line-height: 35px; margin-bottom: 7px; }
+h4 { line-height: 28px; margin-bottom: 7px; }
+h5 { line-height: 21px;  }
+
+p { margin: 0 0 24px 0; }
+p.lead { line-height: 28px; }
+
+blockquote, blockquote p { line-height: 21px; }
+blockquote { margin: 0 0 21px; padding: 7px 20px 0 19px; }
+
+hr { margin: 7px 0 14px; }
+ 
+ul, ol { margin-bottom: 21px;}
+ul ul, ul ol,
+ol ol, ol ul { margin: 7px 0 7px 30px; }
+ul ul li, ul ol li,
+ol ol li, ol ul li { margin-bottom: 7px; }
+li { line-height: 21px; margin-bottom: 14px; }
+
+.icon {
+	font-family: "WebSymbolsRegular";
+}
+
+
+/* #font-face
+================================================== */
+
+@font-face {
+	font-family: 'WebSymbolsRegular';
+	src: 	url("../fonts/websymbols/websymbols-regular-webfont.eot");
+	src: 	url("../fonts/websymbols/websymbols-regular-webfont.eot?#iefix") format('embedded-opentype'),	
+			url("../fonts/websymbols/websymbols-regular-webfont.woff") format('woff'),
+			url("../fonts/websymbols/websymbols-regular-webfont.ttf") format('truetype'),
+			url("../fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular") format('svg');						
+}
+
+
+@font-face {
+	font-family: 'Entypo';
+	src: 	url("../fonts/entypo/entypo.eot");
+	src: 	url("../fonts/entypo/entypo.eot?#iefix") format('embedded-opentype'),	
+			url("../fonts/entypo/entypo.woff") format('woff'),
+			url("../fonts/entypo/entypo.ttf") format('truetype'),
+			url("../fonts/entypo/entypo.svg#WebSymbolsRegular") format('svg');						
+}
+
+
+
+/* #Site Styles
+================================================== */
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	background: #f4f4f4;
+}
+
+.strong {
+	font-weight: 700;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/* ** =header ** */
+
+header.container {
+	margin-top: 14px;
+}
+
+.wrapper {
+	position: relative;
+	display: block;
+	margin: 0 0 21px 0;
+	margin-left: 0px;
+}
+
+img.ititle {
+	display: block;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	
+}
+
+figcaption.title {
+	font-size: 4em;
+	font-weight: 900;
+	line-height: 1.1em;
+	color: #fff;
+	text-shadow: rgba(0,0,0,0.8) 0px 0px 10px;
+	
+	position: absolute;
+	bottom: 10px;
+	left: 14px;
+}
+
+figcaption.credit {
+	font-size: 0.7em;
+	color: #fff;
+
+	position: relative;
+	bottom: 23px;
+	left: 7px;
+}
+
+figcaption.credit a {
+	font-weight: 700;
+	color: #fff;
+	text-decoration: none;
+}
+
+.update {
+	padding: 2px 4px;
+	background: #3B8FCD;
+	color: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+}
+
+/* ** list buttons ** */
+#selectbuttons li {
+	display: inline;
+	float: left;
+	
+	font-weight: 700;
+	font-size: 18px;
+	text-align: center;
+	
+	width: 23%;
+	height: 3.6em;
+	margin: 1% 1% 3% 1%;
+	padding-left: 4%;
+	padding-right: 4%;
+	border: 2px solid rgba(255,255,255,1);
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	
+	-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+	
+}
+
+#selectbuttons li:first-child {
+	margin-left: 0;
+}
+
+#selectbuttons li:last-child {
+	margin-right: 0;
+}
+
+#selectbuttons li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 900;
+}
+
+#selectbuttons li a:hover,
+#selectbuttons li a:active {
+	text-shadow: rgba(0,0,0,0.8) 0px 0px 14px;
+}
+
+#sum {
+	background: #0CAF60;
+	padding-top: 18px;
+}
+
+#abt {
+	background: #E61E45;
+	padding-top: 18px;
+}
+
+#part {
+	background: #F6B729;
+	padding-top: 10px;	
+}
+
+#ber {
+	background: #3B8FCD;
+	padding-top: 18px;	
+}
+
+
+/* ** description ** */
+
+.desc h2 {
+	padding-top: 14px;
+	font-size: 28px;
+	font-weight: 900;
+	color: #141414;
+}
+
+.desc {
+	font-size: 16px;
+	background: #fff;
+	padding: 4px 21px;
+	margin-bottom: 14px;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.desc p {
+	line-height: 1.5em;
+}
+
+.desc a {
+	color: #006699;
+	font-weight: 700;
+	text-decoration: none;
+	padding: 2px;
+}
+
+.desc a:hover,
+.desc a:active,
+.desc a:focus {
+	background: #006699;
+	color: #fff;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+}
+
+
+.ihighlight {
+	background: rgb(1,189,5);
+	padding: 2px;
+	color: #fff;
+	font-weight: 700;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.highl {
+	text-decoration: underline;
+}
+
+li	{
+	line-height: 1em;
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+ul.nested li {
+	list-style-type: none;
+}
+
+ul.nested li:last-child {
+	margin-bottom: 21px;
+}
+
+.portrait figcaption {
+	text-align: center;
+	width: 116px;
+	background: #404040;
+	color: #fff;
+	font-weight: 700;
+	padding: 1px;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+	margin-bottom: 14px;
+}
+
+/* ** partner companies ** */
+#partner {
+	margin-top: 35px;
+}
+
+.part {
+	text-align: justify;
+}
+
+#wooga,
+#moped {
+	margin-right: 42px;
+}
+
+#paymill,
+#mandrill {
+	margin-left: 42px;
+}
+
+.part h3 {
+	padding-left: 0;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 18px;
+	border-bottom: 1px solid rgba(0,0,0,0.6);
+
+}
+
+.part a {
+	text-decoration: none;
+	color: #141414;
+}
+
+
+li.partnerc {
+	line-height: 1.4em;
+}
+
+.partnerimg img {
+	max-width: 100%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+	margin-bottom: 7px;
+	
+}
+
+.partnerimg a:hover,
+.partnerimg a:active,
+.partnerimg a:focus {
+	background: none;
+}
+
+p.label {
+	text-align: center;
+	background: #3B8FCD;
+	color: #fff;
+	font-weight: 700;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+	
+}
+
+/* ** =footer ** */
+
+.footer {
+	background: #141414;
+	color: #999;
+	border-top: #141414;
+}
+
+.primaryfooter {
+	padding-top: 21px;
+	margin-bottom: 14px;
+}
+
+.flogo {
+	margin-bottom: 14px;
+}
+
+.footer .ful {
+	margin-bottom: 21px;
+}
+
+.footer .cc {
+	text-align: right;
+}
+
+.footer h3 a {
+	margin: 0;
+	padding: 0;
+	width: 196px;
+	height: 26px;
+	display: block;
+	background: url(../img/logowhm_.png) 0 0 no-repeat;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+.footer li {
+	display: inline;
+	margin-right: 28px;
+}
+
+.footer li a,
+.footer .linked a {
+	color: #999;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.footer li a:hover,
+.footer li a:active,
+.footer li a:selected,
+.footer .linked a:hover,
+.footer .linked a:active,
+.footer .linked a:selected {
+	color: #fff;
+}
+
+.footer a:hover,
+.eml:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.footer .separator {
+	color: #999;
+}
+
+#push,
+#footer {
+	display: block;
+	height: 171px;
+}
+
+.twitterc {
+	font-size: 28px;
+}
+
+.twitterc:hover {
+	color: #00aced;
+}
+
+.secondaryfooter {
+	border-top: 1px solid #555;
+	padding-top: 7px;
+	padding-bottom: 14px;
+}
+
