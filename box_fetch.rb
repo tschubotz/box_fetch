@@ -76,13 +76,13 @@ def do_search(query, account)
   end
 end
 
-# def create_shared_link(user_id, file_id)
-#   access_token = Access.instance.get_account(user_id).access_token
-#   response = HTTParty.put("https://api.box.com/2.0/files/#{file_id}",
-#                             headers: {"Authorization" => "Bearer #{access_token}"},
-#                             body: {"shared_link" => {"access" =>  "open"}})
-#   return response.body["shared_link"]["url"]
-# end
+def create_shared_link(user_id, file_id)
+  access_token = Access.instance.get_account(user_id).access_token
+  response = HTTParty.put("https://api.box.com/2.0/files/#{file_id}",
+                            headers: {"Authorization" => "Bearer #{access_token}"},
+                            body: '{"shared_link": {"access":  "open"}}')
+  return Oj.load(response.body)["shared_link"]["url"]
+end
 
 def send_sms(phone_number, message)
   system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
@@ -117,6 +117,6 @@ get '/registered_users' do
   haml :registered_users, locals: {accounts: accounts}
 end
 
-# get '/request_access/:user_id/:file_id' do | user_id, file_id |
-#   redirect create_shared_link(user_id, file_id)
-# end
+get '/request_access/:user_id/:file_id' do | user_id, file_id |
+  redirect create_shared_link(user_id, file_id)
+end
