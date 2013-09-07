@@ -76,6 +76,14 @@ def do_search(query, account)
   end
 end
 
+def create_shared_folder(user_id, folder_id)
+  access_token = Access.instance.get_account(user_id).access_token
+  response = HTTParty.put("https://api.box.com/2.0/folders/#{folder_id}",
+                            headers: {"Authorization" => "Bearer #{access_token}"},
+                            body: '{"shared_link": {"access":  "open"}}')
+  return Oj.load(response.body)["shared_link"]["url"]
+end
+
 def create_shared_link(user_id, file_id)
   access_token = Access.instance.get_account(user_id).access_token
   response = HTTParty.put("https://api.box.com/2.0/files/#{file_id}",
@@ -145,8 +153,12 @@ get '/registered_users' do
   haml :registered_users, locals: {accounts: accounts}
 end
 
-get '/request_access/:user_id/:file_id' do | user_id, file_id |
+get '/request_access_file/:user_id/:file_id' do | user_id, file_id |
   redirect create_shared_link(user_id, file_id)
+end
+
+get '/request_access_folder/:user_id/:folder_id' do | user_id, folder_id |
+  redirect create_shared_folder(user_id, folder_id)
 end
 
 post '/send_sms' do

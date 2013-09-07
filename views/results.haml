@@ -18,7 +18,12 @@
               - else
                 %i{class: "icon-folder-close"}
             %td{style: "vertical-align: middle;"}
-              %a{target: "_blank", href: "/request_access/#{user["user_id"]}/#{entry["id"]}"}= entry["name"]
+              %a{target: "_blank", href: "/request_access_file/#{user["user_id"]}/#{entry["id"]}"}= entry["name"]
+              .div{style: "font-size:12px;"}
+                - entry["path_collection"]["entries"].map do |folder|
+                  %a{target: "_blank", href: "/request_access_folder/#{user["user_id"]}/#{folder["id"]}"}= folder["name"]
+                  \/
+
             %td{style: "vertical-align: middle;"}
               %img{title: user["name"], src: user["avatar_url"]}
             %td{style: "vertical-align: middle;"}
