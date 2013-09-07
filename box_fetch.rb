@@ -77,9 +77,11 @@ def do_search(query, account)
 end
 
 # def create_shared_link(user_id, file_id)
-
-#   response = HTTParty.put("https://api.box.com/2.0/files/#{{file_id}}",
-#                             headers: {"Authorization" => "Bearer ACCESS_TOKEN"})
+#   access_token = Access.instance.get_account(user_id).access_token
+#   response = HTTParty.put("https://api.box.com/2.0/files/#{file_id}",
+#                             headers: {"Authorization" => "Bearer #{access_token}"},
+#                             body: {"shared_link" => {"access" =>  "open"}})
+#   return response.body["shared_link"]["url"]
 # end
 
 def send_sms(phone_number, message)
@@ -97,7 +99,9 @@ end
 get '/search/:value' do |value|
   data = []
   Access.instance.accounts.each_with_index do |account,idx|
-    data << do_search(value,account)
+    search_result = do_search(value,account)
+    search_result['user_id'] = account.user_id
+    data << search_result
   end
   haml :results, locals: {data: data}
 end
@@ -112,3 +116,7 @@ get '/registered_users' do
   accounts = Access.instance.accounts
   haml :registered_users, locals: {accounts: accounts}
 end
+
+# get '/request_access/:user_id/:file_id' do | user_id, file_id |
+#   redirect create_shared_link(user_id, file_id)
+# end
