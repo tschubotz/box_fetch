@@ -64,7 +64,7 @@ end
 
 def do_search(query, account)
   while true
-    response = HTTParty.get("https://api.box.com/2.0/search?query=#{query}&offset=0",
+    response = HTTParty.get("https://api.box.com/2.0/search?query=#{query}&limit=5&offset=0",
                             headers: {"Authorization" => "Bearer #{account.access_token}"}
                            )
     if response.headers["www-authenticate"] &&
@@ -137,4 +137,10 @@ end
 
 get '/request_access/:user_id/:file_id' do | user_id, file_id |
   redirect create_shared_link(user_id, file_id)
+end
+
+post '/send_sms' do
+  account = Access.instance.get_account(params[:user_id])
+  send_sms(account.phone_number, params[:message])
+  return true
 end
