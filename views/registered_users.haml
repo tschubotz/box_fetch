@@ -1,15 +1,15 @@
 -# encoding: utf-8
 .row{style: "margin-top: 10%;"}
   .span12
-    %table.table.table-bordered
+    %table.table.table-striped
       %th
-        user_id
+        Id
       %th
-        name
+        Name
       %th
-        phone_number
+        Phone Number
       %th
-        avatar
+        Avatar
       - unless accounts.empty?
         - accounts.each do |account|
           %tr
