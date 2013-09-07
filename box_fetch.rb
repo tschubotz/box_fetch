@@ -59,7 +59,7 @@ def refresh_account(account)
   url = "https://www.box.com/api/oauth2/token"
   refresh_token = account.refresh_token
   data = "grant_type=refresh_token&refresh_token=#{refresh_token}&client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}"
-  acc = request_auth(url,data)
+  account = request_auth(url,data)
 end
 
 def do_search(query, account)
