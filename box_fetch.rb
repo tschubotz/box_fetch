@@ -44,7 +44,7 @@ def request_auth(url,data)
     status 404
     #nice error handling
   else
-    hash["expires_in"] = (Time.now + hash["expires_in"] * 60).to_f
+    hash["expires_in"] = (Time.now + hash["expires_in"]).to_f
   end
   hash
 end

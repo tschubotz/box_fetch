@@ -9,6 +9,8 @@
       %th
         Phone Number
       %th
+        Expires at
+      %th
         Avatar
       - unless accounts.empty?
         - accounts.each do |account|
@@ -19,5 +21,7 @@
               = account.name
             %td
               = account.phone_number
+            %td
+              = Time.at(account.expires_in)
             %td
               %img{:src => account.avatar_url}
