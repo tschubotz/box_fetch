@@ -90,11 +90,13 @@ get '/register' do
 end
 
 get '/search/:value' do |value|
-  hash = {}
+  data = []
   @@access.each_with_index do |acc,idx|
-    hash["#{idx}"] = do_search(value,acc)
+    data << do_search(value,acc)
   end
-  Oj.dump(hash)
+  require 'debugger'
+  debugger
+  haml :results, locals: {data: data}
 end
 
 get '/add_access' do

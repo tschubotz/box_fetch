@@ -1,0 +1,20 @@
+-# encoding: utf-8
+.row{style: "margin-top: 10%;"}
+  .span12
+    %table.table.table-bordered
+      %th
+        Filename
+      %th
+        Owner
+      %th
+        Size
+      - unless data.empty?
+        - data.each do |user_result|
+          - user_result["entries"].each do |entry|
+            %tr
+              %td
+                = entry["name"]
+              %td
+                = entry["created_by"]["name"]
+              %td
+                = entry["size"]
