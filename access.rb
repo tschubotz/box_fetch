@@ -70,7 +70,7 @@ class Account
   attr_accessor :expires_in
   attr_accessor :refresh_token
 
-  def initialize(user_info, access_token, expires_in, refresh_token)
+  def initialize(user_info, request_auth_info)
     self.user_id = user_info["id"]
     self.name = user_info["name"]
     self.phone_number = user_info["phone"]

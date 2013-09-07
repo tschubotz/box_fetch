@@ -6,7 +6,7 @@
       var query = $('#search').val()
       $.ajax({
           type: "GET",
-          url: "http://127.0.0.1:4567/search/" + query,
+          url: "/search/" + query,
           success: function(data, status) {
             $('#results').html(data)
           }
