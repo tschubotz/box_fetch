@@ -77,6 +77,10 @@ def do_search(query, acc)
   end
 end
 
+def send_sms(phone_number, message)
+  system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
+end
+
 get '/' do
   haml :index
 end
