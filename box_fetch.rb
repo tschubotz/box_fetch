@@ -67,3 +67,7 @@ get '/add_access' do
   add_new_account(params[:code])
   "success"
 end
+
+post '/sendsms' do
+  system("python python_sms_sender/send_sms.py #{params[:phone_number]} #{params[:sms_text]}")
+end
