@@ -107,19 +107,29 @@ end
 #end
 
 get '/search/:value' do |value|
-  data = {}
+  threads = []
   Access.instance.accounts.each do |account|
-    user = {}
-    user["user_id"] = account.user_id
-    user["name"] = account.name
-    user["phone_number"] = account.phone_number
-    user["avatar_url"] = account.avatar_url
-    user["results"] = do_search(value,account)["entries"]
-    if user["results"].empty?
-      data[account.user_id.to_s] = {}
-    else
-      data[account.user_id.to_s] = user
-    end
+    t = Thread.new{
+      user = {}
+      user["user_id"] = account.user_id
+      user["name"] = account.name
+      user["phone_number"] = account.phone_number
+      user["avatar_url"] = account.avatar_url
+      user["results"] = do_search(value,account)["entries"]
+      if user["results"].empty?
+        Thread.current["data"] = {}
+        Thread.current["user_id"] = account.user_id.to_s
+      else
+        Thread.current["data"] = user
+        Thread.current["user_id"] = account.user_id.to_s
+      end
+    }
+    threads << t
+  end
+  data = {}
+  threads.each do |thread|
+    thread.join
+    data[thread["user_id"]] = thread["data"]
   end
   haml :results, layout: false, locals: {data: data}
 end
