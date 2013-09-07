@@ -46,6 +46,10 @@ def do_search(query, acc)
   end
 end
 
+def send_sms(phone_number, message)
+  system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
+end
+
 get '/' do
   "Hello World"
 end
@@ -66,8 +70,4 @@ get '/add_access' do
   status 404 unless params[:code]
   add_new_account(params[:code])
   "success"
-end
-
-post '/sendsms' do
-  system("python python_sms_sender/send_sms.py #{params[:phone_number]} #{params[:sms_text]}")
 end
