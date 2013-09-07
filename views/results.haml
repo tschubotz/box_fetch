@@ -8,17 +8,16 @@
     Size
   %th
 
-  - unless data.empty?
-    - data.values do |user|
-      - user.entires do |entries|
-        - entries.each do |entry|
-          %tr
-            %td
-              = entry["name"]
-            %td
-              = entry["created_by"]["name"]
-            %td
-              = entry["size"]
-            %td
-              %a{href: "/request_access/#{user_result['user_id']}/#{entry["id"]}"}View file on box.com
+  - if data
+    - data.each do |user, results|
+      - results.each do |entry|
+        %tr
+          %td
+            = entry["name"]
+          %td
+            = entry["created_by"]["name"]
+          %td
+            = entry["size"]
+          %td
+            %a{href: "/request_access/#{user}/#{entry["id"]}"}View file on box.com
 
