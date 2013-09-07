@@ -315,13 +315,12 @@ a#registered:hover {
 
 /* ** search ** */
 
-#search {
-
+#searchfield {
+	margin-top: 50px;
 }
 
 input#search {
 	position: absolute;
-	margin-top: 3em;
 	width: 500px;
 	margin-left: auto;
 	margin-right: auto;
