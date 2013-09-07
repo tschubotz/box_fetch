@@ -2,6 +2,7 @@ require 'sinatra'
 require 'oj'
 require 'httparty'
 require 'haml'
+require './access.rb'
 
 CLIENT_ID = "kaj9cycumsukkw37cwrn67v9del0iieg"
 CLIENT_SECRET = "tXvUvg1NjiSkPt8JPJZ4Awn71as5eUvn"
@@ -36,8 +37,6 @@ module Helper
   end
 end
 
-@@access = []
-
 def request_auth(url,data)
   response = HTTParty.post(url, body: data)
   hash = Oj.load(response.body)
@@ -53,29 +52,35 @@ end
 def add_new_account(code)
   url = "https://www.box.com/api/oauth2/token"
   data = "grant_type=authorization_code&code=#{code}&client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}"
-  @@access << request_auth(url,data)
+  Access.instance.add_account(request_auth(url,data))
 end
 
-def refresh_account(acc)
+def refresh_account(account)
   url = "https://www.box.com/api/oauth2/token"
-  refresh_token = acc["refresh_token"]
+  refresh_token = account.refresh_token
   data = "grant_type=refresh_token&refresh_token=#{refresh_token}&client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}"
   acc = request_auth(url,data)
 end
 
-def do_search(query, acc)
+def do_search(query, account)
   while true
     response = HTTParty.get("https://api.box.com/2.0/search?query=#{query}&offset=0",
-                            headers: {"Authorization" => "Bearer #{acc["access_token"]}"}
+                            headers: {"Authorization" => "Bearer #{account.access_token}"}
                            )
     if response.headers["www-authenticate"] &&
        response.headers["www-authenticate"]["error"]
-      refresh_account(acc)
+      refresh_account(account)
     else
       return Oj.load(response.body)
     end
   end
 end
+
+# def create_shared_link(user_id, file_id)
+
+#   response = HTTParty.put("https://api.box.com/2.0/files/#{{file_id}}",
+#                             headers: {"Authorization" => "Bearer ACCESS_TOKEN"})
+# end
 
 def send_sms(phone_number, message)
   system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
@@ -91,11 +96,9 @@ end
 
 get '/search/:value' do |value|
   data = []
-  @@access.each_with_index do |acc,idx|
-    data << do_search(value,acc)
+  Access.instance.accounts.each_with_index do |account,idx|
+    data << do_search(value,account)
   end
-  require 'debugger'
-  debugger
   haml :results, locals: {data: data}
 end
 
