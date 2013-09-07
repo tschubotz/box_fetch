@@ -146,9 +146,8 @@ get '/registered_users' do
 end
 
 get '/request_access/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
+  # TODO: fox bug: this endpoint is some how called 2 times.
   account = Access.instance.get_account(params[:user_id])
-  require 'debugger'
-  debugger
   send_sms(account.phone_number, "Your file #{file_name} has been shared.")
   redirect create_shared_link(user_id, file_id)
 end
