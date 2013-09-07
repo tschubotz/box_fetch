@@ -148,7 +148,7 @@ end
 get '/request_access/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
   # TODO: fox bug: this endpoint is some how called 2 times.
   account = Access.instance.get_account(params[:user_id])
-  send_sms(account.phone_number, "Your file #{file_name} has been shared.")
+  send_sms(account.phone_number, "Hi #{account.name}! Your file #{file_name} has been shared.")
   redirect create_shared_link(user_id, file_id)
 end
 
@@ -158,13 +158,18 @@ end
 #   return true
 # end
 
-get '/download_file/:user_id/:file_id' do | user_id, file_id |
+get '/download_file/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
+  file_path = "public/img/box/#{file_id}_#{file_name}"
   account = Access.instance.get_account(params[:user_id])
-  response =  HTTParty.get("https://api.box.com/2.0/files/#{file_id}/content",
-                            headers: {"Authorization" => "Bearer #{account.access_token}"})
-  require 'debugger'
-  debugger
-  open("public/img/box/" ,"wb") { |file|
-            file.write(resp.body)
-        }
+
+  if not File.exists?(file_path)
+    response =  HTTParty.get("https://api.box.com/2.0/files/#{file_id}/content",
+                              headers: {"Authorization" => "Bearer #{account.access_token}"})
+    open(file_path ,"wb") { |file|
+              file.write(response.body)
+          }
+  end
+
+  send_sms(account.phone_number, "Hi #{account.name}! Your file #{file_name} has been downloaded.")
+  send_file file_path
 end
