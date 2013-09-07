@@ -109,8 +109,17 @@ end
 get '/search/:value' do |value|
   data = {}
   Access.instance.accounts.each do |account|
-    search_result = do_search(value,account)
-    data[account.user_id.to_s] = search_result["entries"]
+    user = {}
+    user["user_id"] = account.user_id
+    user["name"] = account.name
+    user["phone_number"] = account.phone_number
+    user["avatar_url"] = account.avatar_url
+    user["results"] = do_search(value,account)["entries"]
+    if user["results"].empty?
+      data[account.user_id.to_s] = {}
+    else
+      data[account.user_id.to_s] = user
+    end
   end
   haml :results, layout: false, locals: {data: data}
 end

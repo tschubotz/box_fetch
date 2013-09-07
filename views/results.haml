@@ -1,5 +1,5 @@
 -# encoding: utf-8
-%table.table.table-bordered
+%table.table.table-striped
   %th
     Filename
   %th
@@ -7,17 +7,17 @@
   %th
     Size
   %th
-
   - if data
-    - data.each do |user, results|
-      - results.each do |entry|
-        %tr
-          %td
-            = entry["name"]
-          %td
-            = entry["created_by"]["name"]
-          %td
-            = entry["size"]
-          %td
-            %a{href: "/request_access/#{user}/#{entry["id"]}"}View file on box.com
+    - data.each do |id, user|
+      - unless user.empty?
+        - user["results"].each do |entry|
+          %tr
+            %td
+              = entry["name"]
+            %td
+              = user["name"]
+            %td
+              = "#{(entry["size"].to_f / 1024).round(2)} kB"
+            %td
+              %a{href: "/request_access/#{user}/#{entry["id"]}"}View file on box.com
 
