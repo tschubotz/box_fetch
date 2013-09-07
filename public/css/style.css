@@ -351,3 +351,7 @@ table#tableresults {
 	font-family: 'Lato';
 }
 
+table#tableusers {
+	margin-top: 3em;
+	font-family: 'Lato';
+}
