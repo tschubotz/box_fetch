@@ -8,6 +8,8 @@
         Owner
       %th
         Size
+      %th
+
       - unless data.empty?
         - data.each do |user_result|
           - user_result["entries"].each do |entry|
@@ -18,3 +20,6 @@
                 = entry["created_by"]["name"]
               %td
                 = entry["size"]
+              %td
+                %a{href: "/request_access/#{user_result['user_id']}/#{entry["id"]}"}View file on box.com
+
