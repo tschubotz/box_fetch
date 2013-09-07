@@ -16,15 +16,15 @@ class Access
   def add_account(request_auth_info)
     user_info = self.get_user_info(request_auth_info["access_token"])
     if account = self.get_account(user_info["id"])
-      account.update(request_auth_info["access_token"],
-                            request_auth_info["expires_in"],
-                            request_auth_info["refresh_token"])
+      self.update_account(account, request_auth_info)
     else
-      self.accounts << Account.new(user_info,
-                            request_auth_info["access_token"],
-                            request_auth_info["expires_in"],
-                            request_auth_info["refresh_token"])
+      self.accounts << Account.new(user_info, request_auth_info)
     end
+    self.dump_to_file
+  end
+
+  def update_account(account, request_auth_info)
+    account.update(request_auth_info)
     self.dump_to_file
   end
 
@@ -75,14 +75,14 @@ class Account
     self.name = user_info["name"]
     self.phone_number = user_info["phone"]
     self.avatar_url = user_info["avatar_url"]
-    self.access_token = access_token
-    self.expires_in = expires_in
-    self.refresh_token = refresh_token
+    self.access_token = request_auth_info["access_token"]
+    self.expires_in = request_auth_info["expires_in"]
+    self.refresh_token = request_auth_info["refresh_token"]
   end
 
-  def update(access_token, expires_in, refresh_token)
-    self.access_token = access_token
-    self.expires_in = expires_in
-    self.refresh_token = refresh_token
+  def update(request_auth_info)
+    self.access_token = request_auth_info["access_token"]
+    self.expires_in = request_auth_info["expires_in"]
+    self.refresh_token = request_auth_info["refresh_token"]
   end
 end
