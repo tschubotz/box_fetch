@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    haml (4.0.3)
+      tilt
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -20,6 +22,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   httparty
   oj
   sinatra

@@ -1,9 +1,40 @@
 require 'sinatra'
 require 'oj'
 require 'httparty'
+require 'haml'
 
 CLIENT_ID = "kaj9cycumsukkw37cwrn67v9del0iieg"
 CLIENT_SECRET = "tXvUvg1NjiSkPt8JPJZ4Awn71as5eUvn"
+
+module Helper
+  def self.url_for(text, obj = nil)
+    if obj.nil?
+      "#{server}/ui"
+    elsif obj.is_a?(Symbol) || obj.is_a?(String)
+      "#{server}/ui/#{obj}"
+    else
+      name = obj.class.name.demodulize.tableize
+      "#{server}/ui/#{name}/#{obj.id}"
+    end
+  end
+
+  def self.link(text, obj = nil)
+    %{<a href="">#{text}</a>}
+  end
+
+  def self.nav_link(text, obj = nil)
+    url = ""
+    cls = ""
+
+    #if request.path =~ /ui$/
+    #  cls = "active" if obj.nil?
+    #elsif url =~ %r{#{request.path}}
+      cls = "active"
+    #end
+
+    %{<li class="#{cls}"><a href="#{url}">#{text}</a></li>}
+  end
+end
 
 @@access = []
 
@@ -47,7 +78,7 @@ def do_search(query, acc)
 end
 
 get '/' do
-  "Hello World"
+  haml :index
 end
 
 get '/register' do
@@ -65,5 +96,5 @@ end
 get '/add_access' do
   status 404 unless params[:code]
   add_new_account(params[:code])
-  "success"
+  haml :index
 end
