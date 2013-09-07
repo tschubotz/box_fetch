@@ -36,12 +36,12 @@ Provides serveral how tos related to sendSMS functionality.
 
 if __name__ == '__main__':
 
-	if len(sys.argv) != 3:
+	if len(sys.argv) < 3:
 		print "usage: {0} <destination_number> <sms_text>".format(sys.argv[0])
 		exit(1)
 
 	destination_number = sys.argv[1]
-	sms_text = sys.argv[2]
+	sms_text = " ".join(sys.argv[2:])
 
 	# Prepare for GCP token
 	url = "https://global.telekom.com/gcp-web-api/oauth"

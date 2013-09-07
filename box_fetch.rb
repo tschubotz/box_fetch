@@ -145,12 +145,27 @@ get '/registered_users' do
   haml :registered_users, locals: {accounts: accounts}
 end
 
-get '/request_access/:user_id/:file_id' do | user_id, file_id |
+get '/request_access/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
+  account = Access.instance.get_account(params[:user_id])
+  require 'debugger'
+  debugger
+  send_sms(account.phone_number, "Your file #{file_name} has been shared.")
   redirect create_shared_link(user_id, file_id)
 end
 
-post '/send_sms' do
+# post '/send_sms' do
+#   account = Access.instance.get_account(params[:user_id])
+#   send_sms(account.phone_number, params[:message])
+#   return true
+# end
+
+get '/download_file/:user_id/:file_id' do | user_id, file_id |
   account = Access.instance.get_account(params[:user_id])
-  send_sms(account.phone_number, params[:message])
-  return true
+  response =  HTTParty.get("https://api.box.com/2.0/files/#{file_id}/content",
+                            headers: {"Authorization" => "Bearer #{account.access_token}"})
+  require 'debugger'
+  debugger
+  open("public/img/box/" ,"wb") { |file|
+            file.write(resp.body)
+        }
 end
