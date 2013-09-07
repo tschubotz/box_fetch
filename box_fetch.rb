@@ -96,14 +96,25 @@ get '/register' do
   redirect "https://www.box.com/api/oauth2/authorize?response_type=code&client_id=#{CLIENT_ID}&redirect_uri=http://127.0.0.1:4567/add_access"
 end
 
+#get '/search/:value' do |value|
+#  data = []
+#  Access.instance.accounts.each_with_index do |account,idx|
+#    search_result = do_search(value,account)
+#    search_result['user_id'] = account.user_id
+#    data << search_result
+#  end
+#  haml :results, locals: {data: data}
+#end
+
 get '/search/:value' do |value|
-  data = []
-  Access.instance.accounts.each_with_index do |account,idx|
+  data = {}
+  require 'debugger'
+  debugger
+  Access.instance.accounts.each do |account|
     search_result = do_search(value,account)
-    search_result['user_id'] = account.user_id
-    data << search_result
+    data[account.user_id.to_s] = search_result["entries"]
   end
-  haml :results, locals: {data: data}
+  haml :results, layout: false, locals: {data: data}
 end
 
 get '/add_access' do
