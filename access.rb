@@ -4,10 +4,13 @@ require 'singleton'
 class Access
   include Singleton
 
+  ACCOUNTS_FILE = 'accounts.marshal'
+
   attr_accessor :accounts
 
   def initialize
     self.accounts = []
+    self.load_from_file
   end
 
   def add_account(request_auth_info)
@@ -22,6 +25,7 @@ class Access
                             request_auth_info["expires_in"],
                             request_auth_info["refresh_token"])
     end
+    self.dump_to_file
   end
 
   def get_user_info(access_token)
@@ -38,6 +42,22 @@ class Access
     end
     return nil
   end
+
+  def load_from_file
+    if File.exists?(ACCOUNTS_FILE)
+      File.open(ACCOUNTS_FILE) do |file|
+        self.accounts = Marshal.load(file)
+      end
+    else
+      return false
+    end
+  end
+
+  def dump_to_file
+    File.open(ACCOUNTS_FILE,'w') do |file|
+      Marshal.dump(self.accounts, file)
+    end
+  end
 end
 
 class Account
@@ -51,7 +71,7 @@ class Account
   attr_accessor :refresh_token
 
   def initialize(user_info, access_token, expires_in, refresh_token)
-    self.user_id = user_info["user_id"]
+    self.user_id = user_info["id"]
     self.name = user_info["name"]
     self.phone_number = user_info["phone"]
     self.avatar_url = user_info["avatar_url"]
