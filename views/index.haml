@@ -2,7 +2,7 @@
 :javascript
   function search(event) {
     if (event.which == 13) {
-      $('#results').html("<div align=\"center\"><img src=\"/img/ajax-loader.gif\"></div>")
+      $('#results').html("<div align=\"center\"><img width=100 height=100 src=\"/img/ajax-loader.gif\"></div>")
       var query = $('#search').val()
       $.ajax({
           type: "GET",
@@ -23,10 +23,10 @@
   //   });
   // }
 
-.row{style: "margin-top: 10%;margin-left: 30%;"}
+.row{style: "margin-top: 10%; text-align: center;"}
   .span12
     %div
-      %input{type: "text", id: "search", class: "search-query", placeholder: "Search", onkeypress: "search(event);"}
+      %input{style: "width: 250px;", type: "text", id: "search", class: "search-query", placeholder: "Search", onkeypress: "search(event);"}
 .row{style: "margin-top: 20px;"}
   .span12
     #results
