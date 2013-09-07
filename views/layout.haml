@@ -5,19 +5,21 @@
     %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
     %link(rel="stylesheet" type="text/css" href="/css/bootstrap.css")
+    %link(rel="stylesheet" type="text/css" href="/css/style.css") 
     %script{:type => "text/javascript", :src  => "/js/jquery.js"}
     %script{:type => "text/javascript", :src  => "/js/bootstrap.js"}
     %title BoxFetch
   %body{data: { spy: :scroll, target: ".bs-docs-sidebar" }}
     %header.navbar.navbar-inverse.navbar-fixed-top
-      %nav.navbar-inner
+      %nav#header2.navbar-inner.header
+    
         .container
           %div.nav-collapse.collapse
             %p.navbar-text.pull-left
-              %a{:href => "/", :class=> "brand"}BoxFetch
-            %p.navbar-text.pull-right
+              %a#logo{:href => "/", :class=> "brand"}BoxFetch
+            %p#register.navbar-text.pull-right
               %a{href: "/register", class: "brand"}Register
-            %p.navbar-text.pull-right
+            %p#registered.navbar-text.pull-right
               %a{href: "/registered_users", class: "brand"}Registered Users
     .container
       = yield

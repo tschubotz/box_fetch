@@ -1,0 +1,355 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+/*
+* This project uses pattern files from http://subtlepatterns.com/.
+* Subtle Patterns by Subtle Patterns 
+* is licensed under a 
+* Creative Commons Attribution-ShareAlike 3.0 Unported License.
+* http://creativecommons.org/licenses/by-sa/3.0/deed.en_US
+*
+* Many thanks to Atle Mo and the pattern designers!
+*/
+
+
+/* 
+* Awesome Entypo pictograms by Daniel Bruce — www.entypo.com
+* The Entypo pictograms are licensed under CC BY 3.0 and the font under SIL Open Font License.
+*/
+
+
+/*
+* Web Symbols font by Just Be Nice Studio 
+* http://justbenicestudio.com/studio/websymbols/
+* Licensed under the SIL Open Font License, Version 1.1.
+* This license is available with a FAQ at http://scripts.sil.org/OFL
+*/
+
+
+/*
+* Permanent Marker font by Font Diner 
+* https://profiles.google.com/fontdiner/about
+* Licensed under the Apache License, Version 2.0
+* This license is available at http://www.apache.org/licenses/LICENSE-2.0.html
+*/
+
+
+/* Table of Content
+==================================================
+	#Typography
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+
+
+/* #Typography / baseline corrections
+================================================== */
+
+h1 { line-height: 49px; margin-bottom: 14px; }
+h2 { line-height: 42px; margin-bottom: 7px; }
+h3 { line-height: 35px; margin-bottom: 7px; }
+h4 { line-height: 28px; margin-bottom: 7px; }
+h5 { line-height: 21px;  }
+
+p { margin: 0 0 14px 0; }
+p.lead { line-height: 28px; }
+p.psmall { margin: 0 0 5px 0; }
+
+blockquote, blockquote p { line-height: 21px; }
+blockquote { margin: 0 0 21px; padding: 7px 20px 0 19px; }
+
+hr { margin: 7px 0 14px; }
+ 
+ul, ol { margin-bottom: 7px;}
+ul ul, ul ol,
+ol ol, ol ul { margin: 7px 0; }
+ul ul li, ul ol li,
+ol ol li, ol ul li { margin-bottom: 7px; }
+li { line-height: 21px; margin-bottom: 14px; }
+
+.icon {
+	font-family: "WebSymbolsRegular";
+}
+
+
+/* #font-face
+================================================== */
+
+@font-face {
+	font-family: 'WebSymbolsRegular';
+	src: 	url("../fonts/websymbols/websymbols-regular-webfont.eot");
+	src: 	url("../fonts/websymbols/websymbols-regular-webfont.eot?#iefix") format('embedded-opentype'),	
+			url("../fonts/websymbols/websymbols-regular-webfont.woff") format('woff'),
+			url("../fonts/websymbols/websymbols-regular-webfont.ttf") format('truetype'),
+			url("../fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular") format('svg');						
+}
+
+
+@font-face {
+	font-family: 'EntypoW';
+	src: 	url("../fonts/entypo/entypo.eot");
+	src: 	url("../fonts/entypo/entypo.eot?#iefix") format('embedded-opentype'),	
+			url("../fonts/entypo/entypo.woff") format('woff'),
+			url("../fonts/entypo/entypo.ttf") format('truetype'),
+			url("../fonts/entypo/entypo.svg#EntypoW") format('svg');						
+}
+
+
+@font-face {
+	font-family: 'Permanent Marker';
+	src: 	url("../fonts/permanentmarker/PermanentMarker-webfont.eot");
+	src: 	url("../fonts/permanentmarker/PermanentMarker-webfont.eot?#iefix") format('embedded-opentype'),	
+			url("../fonts/permanentmarker/PermanentMarker-webfont.woff") format('woff'),
+			url("../fonts/permanentmarker/PermanentMarker-webfont.ttf") format('truetype'),
+			url("../fonts/permanentmarker/PermanentMarker-webfont.svg#PermanentMarker") format('svg');						
+}
+
+
+@font-face {
+	font-family: 'zocial';
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/zocial/zocial-regular-webfont.eot');
+	src: url('../fonts/zocial/zocial-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/zocial/zocial-regular-webfont.woff') format('woff'),
+		url('../fonts/zocial/zocial-regular-webfont.ttf') format('truetype'),
+		url('../fonts/zocial/zocial-regular-webfont.svg#ZocialRegular') format('svg');
+	unicode-range: U+0-U+10FFFF;
+}
+
+
+
+/* #Site Styles
+================================================== */
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	background: #fff;
+	text-rendering:	optimizeLegibility;
+	-webkit-font-smoothing:	antialiased;
+	font-smoothing:	antialiased;
+}
+
+::selection {
+  background: #ff8c00;
+}
+
+::-moz-selection {
+  background: #ff8c00;
+}
+
+::-webkit-selection {
+  background: #ff8c00;
+}
+
+.strong {
+	font-weight: 700;
+}
+
+.xstrong {
+	font-weight: 900;
+}
+
+.lstrong {
+	font-weight: 400;
+}
+
+.centered {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+.jus {
+	text-align: justify;
+}
+
+.right {
+	text-align: right;
+}
+
+.larger {
+	font-size: 20px;
+}
+
+.smaller {
+	font-size: 14px;
+}
+
+.websymbols {
+	font-family: 'WebSymbolsRegular';
+}
+
+.entypo {
+	font-family: 'EntypoW';
+}
+
+.pmarker {
+	font-family: 'Permanent Marker', cursive;
+}
+
+.borderbottom {
+	border-bottom: 1px solid #141414;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.hidden {
+	display: none;
+}
+
+/* ** header ** */
+#header2 {
+	position: relative;
+	color: red;
+	background: url(dimension.png) repeat 0 0;	
+	z-index: 400;
+	width: 100%;
+	-webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);	
+}
+
+a#logo {
+	margin: 14px 0;
+	padding: 14px 0;
+	width: 220px;
+	height: 61px;
+	display: block;
+	background: url(botch1.png) no-repeat 0 0;
+	
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+a#register {
+	color: #fff;
+	text-shadow: none;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 10px;
+	line-height: 1.2em;
+	margin: 18px 0 0;
+	
+	border: 1px solid rgba(2, 115, 171, 0.7);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+	-webkit-box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.4);
+	-moz-box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.4);
+	box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.4);
+	
+	background-color: #00A4F0;
+	background-image: -webkit-linear-gradient( top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) );
+	background-image: -moz-linear-gradient( top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) );
+	background-image: linear-gradient( top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) );
+	
+	-webkit-transition: background-color 0.18s ease-in-out;
+	-moz-transition: background-color 0.18s ease-in-out;
+	-o-transition: background-color 0.18s ease-in-out;
+	transition: background-color 0.18s ease-in-out;			
+}
+
+
+a#register:hover {
+	color: #fff;
+	background: #00a4f0;
+	-webkit-box-shadow: 0px 0px 22px rgba(255, 255, 255, 0.6);
+	-moz-box-shadow: 0px 0px 22px rgba(255, 255, 255, 0.6);
+	box-shadow: 0px 0px 22px rgba(255, 255, 255, 0.6);	
+	border: 1px solid rgba(2, 115, 171, 0.7);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+	
+	text-shadow: 0px 0px 6px rgba(255,255,255, 0.6);
+}	
+
+
+a#registered {
+	color: #141414;
+	text-shadow: none;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 20px;
+	padding: 10px;
+	line-height: 1.2em;
+	margin: 18px 28px 0 0;
+	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	border-radius: 2px;
+}
+
+a#registered:hover {
+	color: #141414;
+	border-left: 4px solid #00A4F0;
+	background: rgba(255,255,255,0.7);
+
+	text-shadow: 0px 0px 14px rgba(255,255,255, 1.2);
+}
+
+
+/* ** search ** */
+
+#search {
+
+}
+
+input#search {
+	position: absolute;
+	margin-top: 3em;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: 'Lato';
+	
+	color: #141414;
+	font-weight: 400;
+	font-size: 18px;
+	text-decoration: none;
+	padding: 18px;
+	font-size: 18px;
+	text-indent: 10px;
+	width: 420px;
+	border: none;
+	text-align: left;	
+	
+	-webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);	
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	border-radius: 4px;
+}
+
+table#tableresults {
+	margin-top: 3em;
+	font-family: 'Lato';
+}
+
