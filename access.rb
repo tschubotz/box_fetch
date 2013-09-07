@@ -25,6 +25,7 @@ class Access
 
   def update_account(account, request_auth_info)
     account.update(request_auth_info)
+    self.dump_to_file
   end
 
   def get_user_info(access_token)
