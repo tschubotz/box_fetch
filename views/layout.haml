@@ -16,10 +16,10 @@
         .container
           %div.nav-collapse.collapse
             %p.navbar-text.pull-left
-              %a#logo{:href => "/", :class=> "brand"}BoxFetch
-            %p#register.navbar-text.pull-right
-              %a{href: "/register", class: "brand"}Register
-            %p#registered.navbar-text.pull-right
-              %a{href: "/registered_users", class: "brand"}Registered Users
+              %a{:id =>"logo" :href => "/", :class=> "brand"}BoxFetch
+            %p.navbar-text.pull-right
+              %a{:id =>"register" href: "/register", class: "brand"}Register
+            %p.navbar-text.pull-right
+              %a{:id =>"registered" href: "/registered_users", id: "registered", class: "brand"}Registered Users
     .container
       = yield
