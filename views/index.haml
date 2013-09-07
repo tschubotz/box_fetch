@@ -2,7 +2,7 @@
 :javascript
   function search(event) {
     if (event.which == 13) {
-      $('#results').html("<img href=\"/img/ajax-loader.gif\">")
+      $('#results').html("<div align=\"center\"><img src=\"/img/ajax-loader.gif\"></div>")
       var query = $('#search').val()
       $.ajax({
           type: "GET",
