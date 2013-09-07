@@ -74,6 +74,17 @@
 	<script type="text/javascript" src="js/retina.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<script type="text/javascript" src="js/tempo.js"></script>
+	
+	<script type="text/javascript" charset="UTF-8">	
+				$(document).ready(function() {
+			var resultlist = Tempo.prepare('results');
+			boxsearch.starting();
+			$.getJSON("", function(data) {
+				boxsearch.render(data);
+			});
+		});
+	</script> 
+	
 
 
 	<!-- Google Analytics
@@ -86,63 +97,110 @@
 	<div class="sticky">
 		<div class="band header">
 			<header class="container main clearfix">
-				<div class="sixteen columns">
-					<h1 class="logo"><a href="index.html">Boxfetch</a></h1>
+				<div class="two columns alpha">
+					<a href="#"><img class="home" src="img/home.png" width="48" height="48" /></a>
+				</div>									
+				<div class="fourteen columns omega">		
 					<nav class="navigation">
 						<ul>
-							<li class="item"><a href="#">Contact</a></li>					
-							<li class="item omega"><a class="login omega" href="#">Login</a></li>
+							<li class="item omega"><a class="login omega" href="#">Login with <span class="strong">Box</span></a></li>
 						</ul>															
-					</nav>
-				</div>
+					</nav>	
+				</div>			
 			</header><!-- end container -->
 		</div><!-- end band -->	
 	</div>
-	
-	
-	<div class="band section hero anchorTarget" id="top" name="top">
-		<section class="container">
-			<div class="sixteen columns">
-				<div class="maintext" id="hero">
-				</div>
-			</div> <!-- end ten -->
-		</section>
-	</div>
 
-	<div class="band section coop">
+	<div class="band section intro">
 		<section class="container">
 			<div class="sixteen columns">	
-				<div class="companies">
-					<h3>text</h3>
+				<div class="mainheading">
+					<img src="img/botch.png" width="280" height="77" />
+					<p class="subtitle">Supercharging workgroup file search since 2013.</p>
 				</div>
 			</div>
 		</section>
 	</div>
 
+
+	<div class="band section search">
+		<section class="container">
+			<div class="sixteen columns">	
+				<fieldset>
+					<div class="searchfield">
+						<input class="searchf" type="text" name="query" placeholder="Go..." />
+						<input class="submitb" type="submit" name="submit" value="Search" />
+					</div>					
+				</fieldset>
+
+			</div>
+		</section>
+	</div>
+
+
+	<div class="band section resultlist">
+		<section class="container">
+			<div class="sixteen columns">	
+				<div class="list">
+					<ul id="results">
+						<li class="entry">
+							<h4 class="filename">Name of file</h4>
+							<p>authored by Author, 123kB</p>
+							<ul class="actions">
+								<li class="actionitem" id="open"><a href="#" target="">Open</a></li>
+								<li class="actionitem" id="clone"><a href="#" target="">Clone</a></li>							
+							</ul>
+							<p class="changedate">Last change: 09-07-2013 09.00am</p>						
+						</li>
+
+						<li class="entry">
+							<h4 class="filename">Name of file</h4>
+							<p>authored by Author, 123kB</p>
+							<ul class="actions">
+								<li class="actionitem" id="open"><a href="#" target="">Open</a></li>
+								<li class="actionitem" id="clone"><a href="#" target="">Clone</a></li>							
+							</ul>
+							<p class="changedate">Last change: 09-07-2013 09.00am</p>						
+						</li>
+						
+						<li class="entry">
+							<h4 class="filename">Name of file</h4>
+							<p>authored by Author, 123kB</p>
+							<ul class="actions">
+								<li class="actionitem" id="open"><a href="#" target="">Open</a></li>
+								<li class="actionitem" id="clone"><a href="#" target="">Clone</a></li>							
+							</ul>
+							<p class="changedate">Last change: 09-07-2013 09.00am</p>						
+						</li>					
+						
+					</ul>									
+				</div>
+
+			</div>
+		</section>
+	</div>
 
 
 	<div class="band footer">
 		<footer class="primaryfooter container main">					
-			<div class="six columns flogo">
-				<h3 class="logo"><a class="anchorLink" href="#top">Boxfetch</a> </h3>				
-			</div>
-			
-					
-			<div class="sixteen columns" id="contact">
-				<ul id="navrow">
-					<li class="footerlink"><a href="faqs.html">FAQs</a></li>
-				</ul>
-				<ul class="ful">
-					<li class="contact linked"><a href="https://www.twitter.com/getboxfetch" target="_blank"><span class="entypo twitter">t</span></a></li>		
-				</ul>
+			<div class="sixteen columns" id="contact">	
+				<p class="footerlogo">
+					<img src="img/botchbr.png" width="270" height="74" />
+				</p>
 			</div>		
 		</footer>
 		
 		<footer class="secondaryfooter">
 			<div class="container main">
-				<div class="sixteen columns cc">
-					A Berlin hack by <a href="http://intype.info/" target="_blank">Jonas</a>, <a href="http://intype.info/" target="_blank">Ralf</a>, <a href="http://intype.info/" target="_blank">Sebastian</a> and <a href="http://intype.info/" target="_blank">Tobias.</a> View on <a href="https://www.hackerleague.org/hackathons/deutsche-telekom-developer-garden-slash-box-hackathon/hacks/boxfetch" target="_blank">HackerLeague</a>.
+				<div class="eight columns left">
+					<a href="https://www.twitter.com/getboxfetch" target="_blank"><span class="entypo twitter">t</span></a>
 				</div>
+				<div class="eight columns cc">
+					 A Berlin hack by <a href="">Jonas</a>, <a href="#">Ralf</a>, <a href="#">Sebastian</a> and <a href="#">Tobias.</a> View on <a href="https://www.hackerleague.org/hackathons/deutsche-telekom-developer-garden-slash-box-hackathon/hacks/boxfetch" target="_blank">HackerLeague</a>.
+				</div>
+				
+
+				
 			</div>
 		</footer>
 		<!-- end container -->
