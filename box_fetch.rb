@@ -93,7 +93,10 @@ def create_shared_link(user_id, file_id)
 end
 
 def send_sms(phone_number, message)
-  system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
+  puts "-"*80
+  puts "REENABLE THIS SHIT"
+  puts "-"*80
+  #system("python python_sms_sender/send_sms.py #{phone_number} #{message}")
 end
 
 get '/' do

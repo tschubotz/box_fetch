@@ -5,6 +5,7 @@
     %th
       Title
     %th
+    %th
       Owner
     %th
       Size
@@ -23,6 +24,11 @@
                 - entry["path_collection"]["entries"].map do |folder|
                   %a{target: "_blank", href: "/request_access_folder/#{user["user_id"]}/#{folder["id"]}/#{folder["name"]}"}= folder["name"]
                   \/
+            %td{style: "vertical-align: middle;"}
+              %div{style: "text-align: center"}
+                %a{target: "_blank", href: "/download_file/#{user["user_id"]}/#{entry["id"]}/#{entry["name"]}", class: "btn btn-success btn-small"}
+                  %i{class: "icon-download"}
+                  Download
             %td{style: "vertical-align: middle;"}
               %img{title: user["name"], src: user["avatar_url"]}
             %td{style: "vertical-align: middle;"}
