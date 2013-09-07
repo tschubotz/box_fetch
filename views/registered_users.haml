@@ -1,0 +1,19 @@
+-# encoding: utf-8
+.row{style: "margin-top: 10%;"}
+  .span12
+    %table.table.table-bordered
+      %th
+        user_id
+      %th
+        name
+      %th
+        phone_number
+      - unless accounts.empty?
+        - accounts.each do |account|
+          %tr
+            %td
+              = account.user_id
+            %td
+              = account.name
+            %td
+              = account.phone_number

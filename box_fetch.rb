@@ -107,3 +107,8 @@ get '/add_access' do
   add_new_account(params[:code])
   haml :index
 end
+
+get '/registered_users' do
+  accounts = Access.instance.accounts
+  haml :registered_users, locals: {accounts: accounts}
+end
