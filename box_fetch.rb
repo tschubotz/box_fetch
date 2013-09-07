@@ -108,8 +108,6 @@ end
 
 get '/search/:value' do |value|
   data = {}
-  require 'debugger'
-  debugger
   Access.instance.accounts.each do |account|
     search_result = do_search(value,account)
     data[account.user_id.to_s] = search_result["entries"]
