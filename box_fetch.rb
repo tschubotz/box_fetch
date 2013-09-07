@@ -153,16 +153,36 @@ get '/registered_users' do
   haml :registered_users, locals: {accounts: accounts}
 end
 
-get '/request_access_file/:user_id/:file_id' do | user_id, file_id |
+get '/request_access_file/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
+  account = Access.instance.get_account(params[:user_id])
+  send_sms(account.phone_number, "Hi #{account.name}! Your file #{file_name} has been shared.")
   redirect create_shared_link(user_id, file_id)
 end
 
-get '/request_access_folder/:user_id/:folder_id' do | user_id, folder_id |
+get '/request_access_folder/:user_id/:folder_id/:folder_name' do | user_id, folder_id, folder_name |
+  account = Access.instance.get_account(params[:user_id])
+  send_sms(account.phone_number, "Hi #{account.name}! Your folder #{folder_name} has been shared.")
   redirect create_shared_folder(user_id, folder_id)
 end
 
-post '/send_sms' do
+# post '/send_sms' do
+#   account = Access.instance.get_account(params[:user_id])
+#   send_sms(account.phone_number, params[:message])
+#   return true
+# end
+
+get '/download_file/:user_id/:file_id/:file_name' do | user_id, file_id, file_name |
+  file_path = "public/img/box/#{file_id}_#{file_name}"
   account = Access.instance.get_account(params[:user_id])
-  send_sms(account.phone_number, params[:message])
-  return true
+
+  if not File.exists?(file_path)
+    response =  HTTParty.get("https://api.box.com/2.0/files/#{file_id}/content",
+                              headers: {"Authorization" => "Bearer #{account.access_token}"})
+    open(file_path ,"wb") { |file|
+              file.write(response.body)
+          }
+  end
+
+  send_sms(account.phone_number, "Hi #{account.name}! Your file #{file_name} has been downloaded.")
+  send_file file_path
 end
