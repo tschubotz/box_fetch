@@ -8,6 +8,8 @@
         name
       %th
         phone_number
+      %th
+        avatar
       - unless accounts.empty?
         - accounts.each do |account|
           %tr
@@ -17,3 +19,5 @@
               = account.name
             %td
               = account.phone_number
+            %td
+              %img{:src => account.avatar_url}
