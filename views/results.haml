@@ -1,23 +1,26 @@
 -# encoding: utf-8
-%table.table.table-striped
-  %th
-    Filename
-  %th
-    Owner
-  %th
-    Size
-  %th
-  - if data
+- if data
+  %table.table.table-striped
+    %th
+    %th
+      Title
+    %th
+      Owner
+    %th
+      Size
     - data.each do |id, user|
       - unless user.empty?
         - user["results"].each do |entry|
           %tr
-            %td
-              = entry["name"]
-            %td
-              = user["name"]
-            %td
+            %td{style: "vertical-align: middle;"}
+              - if entry["type"] == "file"
+                %i{class: "icon-file"}
+              - else
+                %i{class: "icon-folder-close"}
+            %td{style: "vertical-align: middle;"}
+              %a{href: "/request_access/#{user}/#{entry["id"]}"}= entry["name"]
+            %td{style: "vertical-align: middle;"}
+              %img{title: user["name"], src: user["avatar_url"]}
+            %td{style: "vertical-align: middle;"}
               = "#{(entry["size"].to_f / 1024).round(2)} kB"
-            %td
-              %a{href: "/request_access/#{user}/#{entry["id"]}"}View file on box.com
-
+  
